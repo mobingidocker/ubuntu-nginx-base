@@ -16,6 +16,8 @@ ADD sudoers /etc/sudoers
 ADD run.sh /run.sh
 
 ONBUILD ADD provision.sh /provision.sh
+ONBUILD ADD startup.sh /startup.sh
 ONBUILD ADD nginx.conf /etc/nginx/conf.d/app.conf
 ONBUILD ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ONBUILD RUN chmod +x /*.sh
 CMD ["/bin/bash"]
