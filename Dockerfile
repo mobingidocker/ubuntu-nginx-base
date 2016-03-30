@@ -13,10 +13,9 @@ RUN echo deb http://nginx.org/packages/mainline/ubuntu/ `lsb_release -cs` nginx 
 RUN apt-get update && apt-get install -y nginx
 ADD config /config
 ADD sudoers /etc/sudoers
+ADD run.sh /run.sh
 
-# ENV PYENV_ROOT /opt/pyenv
 ONBUILD ADD provision.sh /provision.sh
 ONBUILD ADD nginx.conf /etc/nginx/conf.d/app.conf
 ONBUILD ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ONBUILD ADD run.sh /run.sh
 CMD ["/bin/bash"]
